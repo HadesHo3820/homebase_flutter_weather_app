@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:homebase_flutter_weather_app/core/error/exceptions.dart';
 import 'package:homebase_flutter_weather_app/features/weather/data/models/weather_model.dart';
@@ -25,7 +23,7 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSourceInterface {
         queryParameters: {'key': API_KEY, 'q': name});
 
     if (response.statusCode == 200) {
-      return WeatherModel.fromJson(json.decode(response.data.toString()));
+      return WeatherModel.fromJson(response.data);
     } else {
       throw ServerException();
     }
@@ -37,7 +35,8 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSourceInterface {
         queryParameters: {'key': API_KEY, 'q': name});
 
     if (response.statusCode == 200) {
-      return (json.decode(response.data) as List)
+      print("debug json: ${response.data}");
+      return (response.data as List)
           .map((e) => WeatherSearchItemModel.fromJson(e))
           .toList();
     } else {

@@ -1,8 +1,6 @@
 # homebase_flutter_weather_app
 
-A boilerplate project created in flutter using BLoC. Boilerplate supports both web and mobile, clone the appropriate branches mentioned below:
-
-- For Mobile: https://github.com/zubairehman/flutter-boilerplate-project/tree/master (stable channel)
+A homebase_flutter_weather_app project created in flutter using Riverpod as a main State Management.
 
 ## Getting Started
 

@@ -1,0 +1,41 @@
+{
+  "location": {
+    "name": "Ho Chi Minh City",
+    "region": "",
+    "country": "Vietnam",
+    "lat": 10.75,
+    "lon": 106.67,
+    "tz_id": "Asia/Ho_Chi_Minh",
+    "localtime_epoch": 1697272730,
+    "localtime": "2023-10-14 15:38"
+  },
+  "current": {
+    "last_updated_epoch": 1697272200,
+    "last_updated": "2023-10-14 15:30",
+    "temp_c": 31.0,
+    "temp_f": 87.8,
+    "is_day": 1,
+    "condition": {
+      "text": "Overcast",
+      "icon": "//cdn.weatherapi.com/weather/64x64/day/122.png",
+      "code": 1009
+    },
+    "wind_mph": 9.4,
+    "wind_kph": 15.1,
+    "wind_degree": 250,
+    "wind_dir": "WSW",
+    "pressure_mb": 1007.0,
+    "pressure_in": 29.74,
+    "precip_mm": 0.15,
+    "precip_in": 0.01,
+    "humidity": 75,
+    "cloud": 50,
+    "feelslike_c": 36.3,
+    "feelslike_f": 97.3,
+    "vis_km": 9.0,
+    "vis_miles": 5.0,
+    "uv": 7.0,
+    "gust_mph": 7.0,
+    "gust_kph": 11.2
+  }
+}

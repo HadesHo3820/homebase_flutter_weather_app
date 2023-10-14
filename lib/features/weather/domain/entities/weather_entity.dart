@@ -10,7 +10,7 @@ class WeatherEntity extends Equatable {
   List<Object?> get props => [location, current];
 }
 
-class Location {
+class Location extends Equatable {
   String? name;
   String? country;
 
@@ -27,11 +27,14 @@ class Location {
     data['country'] = country;
     return data;
   }
+
+  @override
+  List<Object?> get props => [name, country];
 }
 
-class Current {
+class Current extends Equatable {
   String? lastUpdated;
-  int? tempC;
+  double? tempC;
   double? tempF;
   int? isDay;
   Condition? condition;
@@ -65,9 +68,12 @@ class Current {
     }
     return data;
   }
+
+  @override
+  List<Object?> get props => [lastUpdated, tempC, tempF, isDay, condition];
 }
 
-class Condition {
+class Condition extends Equatable {
   String? text;
   int? code;
 
@@ -84,4 +90,8 @@ class Condition {
     data['code'] = code;
     return data;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [text, code];
 }

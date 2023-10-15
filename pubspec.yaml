@@ -35,8 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-  # BLoC for state management
-  flutter_riverpod: ^2.4.3
+  # State management
+  hooks_riverpod: ^2.4.3
 
   # Service locator
   get_it: ^7.6.4
@@ -54,6 +54,7 @@ dependencies:
   # Local cache
   shared_preferences: ^2.2.2
   shimmer: ^3.0.0
+  flutter_hooks: ^0.20.3
 
 dev_dependencies:
   flutter_test:

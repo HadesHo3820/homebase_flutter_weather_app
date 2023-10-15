@@ -5,10 +5,15 @@ A homebase_flutter_weather_app project created in flutter using Riverpod as a ma
 ## Screenshots of the application
 
 - The latest weather information result
+
   ![alt text](assets/readme_resources/1.png)
+
 - Search Weather by location name
+
   ![alt text](assets/readme_resources/2.png)
+
 - View weather detail information of the chosen place
+
   ![alt text](assets/readme_resources/3.png)
 
 ## Getting Started

@@ -2,12 +2,21 @@
 
 A homebase_flutter_weather_app project created in flutter using Riverpod as a main State Management. This project is structured with Clean Architecture with TDD (Test Driven Development)
 
+## Screenshots of the application
+
+- The latest weather information result
+  ![alt text](assets/readme_resources/1.png)
+- Search Weather by location name
+  ![alt text](assets/readme_resources/2.png)
+- View weather detail information of the chosen place
+  ![alt text](assets/readme_resources/3.png)
+
 ## Getting Started
 
 The flutter_weather_app is a Flutter application that has 3 main features:
 
 - (1) Search Weather by location name,
-- (2) View detail information of the chosen place,
+- (2) View weather detail information of the chosen place,
 - (3) Store locally the latest weather information result
 
 This project is structured with **Clean Architecture** following **TDD (Test Driven Development)**.
@@ -30,6 +39,12 @@ The Clean Architecture will divide each feature has in the Flutter project into 
 ## How to Use
 
 **Step 1:**
+
+In this project, I've set my Weather API key, you could use mine. But if you want to create your own Weather API Key, follow this:
+
+Get your API key by creating an account at [WeatherAPI](https://www.weatherapi.com/)
+
+**Step 2:**
 
 Download or clone this repo by using the link below:
 
@@ -86,6 +101,8 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 ### Up-Coming Features:
 
 - Interactive UI Enhancement
+
+### Up-Coming Features:
 
 ### Libraries & Tools Used
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:homebase_flutter_weather_app/features/weather/presentation/pages/weather_details_screen.dart';
 import 'package:homebase_flutter_weather_app/features/weather/presentation/providers/weather_provider.dart';
+import 'package:homebase_flutter_weather_app/features/weather/presentation/widgets/error_widget.dart';
 import 'package:homebase_flutter_weather_app/features/weather/presentation/widgets/not_found_widget.dart';
 
 class SearchResultsScreen extends ConsumerWidget {
@@ -50,6 +51,7 @@ class SearchResultsScreen extends ConsumerWidget {
                     final listSearchItem =
                         ref.watch(weatherProvider).listWeatherSearchItem;
                     final errorMsg = ref.watch(weatherProvider).errorMsg;
+                    final isLoadingData = ref.watch(weatherProvider).isLoading;
                     if (listSearchItem != null) {
                       if (listSearchItem.isNotEmpty) {
                         return ListView.builder(
@@ -76,8 +78,12 @@ class SearchResultsScreen extends ConsumerWidget {
                       } else {
                         return const NotFoundWidget();
                       }
+                    } else if (isLoadingData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
                     } else if (errorMsg != null) {
-                      return Text("Error occured: $errorMsg");
+                      return const ErrorOccurredWidget();
                     }
                     return const Center(
                         child: Text(

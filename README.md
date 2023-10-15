@@ -1,19 +1,60 @@
 # homebase_flutter_weather_app
 
-A homebase_flutter_weather_app project created in flutter using Riverpod as a main State Management.
+A homebase_flutter_weather_app project created in flutter using Riverpod as a main State Management. This project is structured with Clean Architecture with TDD (Test Driven Development)
+
+## Screenshots of the application
+
+- The latest weather information result
+
+  ![alt text](assets/readme_resources/1.png)
+
+- Search Weather by location name
+
+  ![alt text](assets/readme_resources/2.png)
+
+- View weather detail information of the chosen place
+
+  ![alt text](assets/readme_resources/3.png)
 
 ## Getting Started
 
-The Boilerplate contains the minimal implementation required to create a new library or project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create a new project. By using boiler plate code as standard initializer, we can have same patterns in all the projects that will inherit it. This will also help in reducing setup & development time by allowing you to use same code pattern and avoid re-writing from scratch.
+The flutter_weather_app is a Flutter application that has 3 main features:
+
+- (1) Search Weather by location name,
+- (2) View weather detail information of the chosen place,
+- (3) Store locally the latest weather information result
+
+This project is structured with **Clean Architecture** following **TDD (Test Driven Development)**.
+
+The Clean Architecture will divide each feature has in the Flutter project into 3 main layers:
+
+- Domain Layer
+  - The domain layer is the deepest in the clean architecture. This layer contains the code for business logic applications such as entities and use case
+- Data Layer
+  - The data layer is located at the outermost layer. This layer consists of data source code such as consume Rest API, access to the local database
+- Presentation Layer
+  - The presentation layer consists of the code to access the data of the app from a repository. Also, there is the code for state management such as providers, BLoC, and so on.
+
+![alt text](assets/readme_resources/CleanArchitecture.jpeg)
+
+**Test-Driven Development** is an application development process where testing is the main character that drives the development. Testing code
+
+![alt text](assets/readme_resources/tdd.webp)
 
 ## How to Use
 
 **Step 1:**
 
+In this project, I've set my Weather API key, you could use mine. But if you want to create your own Weather API Key, follow this:
+
+Get your API key by creating an account at [WeatherAPI](https://www.weatherapi.com/)
+
+**Step 2:**
+
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/zubairehman/flutter-boilerplate-project.git
+https://github.com/HadesHo3820/homebase_flutter_weather_app.git
 ```
 
 **Step 2:**
@@ -38,6 +79,14 @@ or watch command in order to keep the source code synced automatically:
 flutter packages pub run build_runner watch
 ```
 
+### How to verify Unit Testing
+
+Open the termial in the scope of this project and execute the following command to run all the unit tests have in this project:
+
+```
+flutter test
+```
+
 ## Hide Generated Files
 
 In-order to hide generated files, navigate to `Android Studio` -> `Preferences` -> `Editor` -> `File Types` and paste the below lines under `ignore files and folders` section:
@@ -54,44 +103,22 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 **/*.g.dart
 ```
 
-## Boilerplate Features:
+### Up-Coming Features:
 
-- Splash
-- Login
-- Home
-- Routing
-- Theme
-- Dio
-- Database
-- MobX (to connect the reactive data of your application with the UI)
-- Provider (State Management)
-- Encryption
-- Validation
-- Code Generation
-- User Notifications
-- Logging
-- Dependency Injection
-- Dark Theme Support (new)
-- Multilingual Support (new)
-- Provider example (new)
+- Interactive UI Enhancement
 
 ### Up-Coming Features:
 
-- Connectivity Support
-- Background Fetch Support
-
 ### Libraries & Tools Used
 
-- [Dio](https://github.com/flutterchina/dio)
-- [Database](https://github.com/tekartik/sembast.dart)
-- [MobX](https://github.com/mobxjs/mobx.dart) (to connect the reactive data of your application with the UI)
-- [Provider](https://github.com/rrousselGit/provider) (State Management)
-- [Encryption](https://github.com/xxtea/xxtea-dart)
-- [Validation](https://github.com/dart-league/validators)
-- [Logging](https://github.com/zubairehman/Flogs)
-- [Notifications](https://github.com/AndreHaueisen/flushbar)
-- [Json Serialization](https://github.com/dart-lang/json_serializable)
-- [Dependency Injection](https://github.com/fluttercommunity/get_it)
+- [hooks_riverpod](https://pub.dev/packages/hooks_riverpod) (State Management and implementation of React hooks)
+- [dio](https://pub.dev/packages/dio) (A powerful HTTP networking package)
+- [get_it](https://pub.dev/packages/get_it) (Service locator)
+- [equatable](https://pub.dev/packages/equatable) (Value equality)
+- [dartz](https://pub.dev/packages/dartz) (Functional programming implementation)
+- [internet_connection_checker](https://pub.dev/packages?q=internet_connection_checker) (pure Dart library that checks for internet)
+- [shared_preferences](https://pub.dev/packages/shared_preferences) (key-value local storage)
+- [mockito](https://pub.dev/packages/mockito) (A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verification, and stubbing)
 
 ### Folder Structure
 
@@ -106,10 +133,53 @@ flutter-app/
 |- test
 ```
 
-Here is the folder structure we have been using in this project
+Here is the lib folder structure we have been using in this project
 
 ```
 lib/
+|- core/
+|   - error/
+|   - network/
+|   - usecases/
+|- constants/
+|- features
+|   - weather
+|     - data
+|       - data_sources
+|       - models
+|       - repositories
+|     - domain
+|       - entities
+|       - repositories
+|       - usecases
+|     - presentation
+|       - pages
+|       - providers
+|       - widget
+|- gen
+|- main.dart
+```
+
+Here is the test folder structure we have been using in this project
+
+```
+|- core
+|   - network
+|     - network_info_test.dart
+|- features
+|   - weather
+|     - data
+|       - data_sources
+|       - models
+|       - repositories
+|     - domain
+|       - usecases
+|     - presentation
+|- fixtures
+```
+
+```
+test/
 |- constants/
 |- data/
 |- stores/
@@ -120,164 +190,36 @@ lib/
 |- routes.dart
 ```
 
-Now, lets dive into the lib folder which has the main code for the application.
-
-```
-1- constants - All the application level constants are defined in this directory with-in their respective files. This directory contains the constants for `theme`, `dimentions`, `api endpoints`, `preferences` and `strings`.
-2- data - Contains the data layer of your project, includes directories for local, network and shared pref/cache.
-3- stores - Contains store(s) for state-management of your application, to connect the reactive data of your application with the UI.
-4- ui — Contains all the ui of your project, contains sub directory for each screen.
-5- util — Contains the utilities/common functions of your application.
-6- widgets — Contains the common widgets for your applications. For example, Button, TextField etc.
-7- routes.dart — This file contains all the routes for your application.
-8- main.dart - This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
-```
-
-### Constants
-
-This directory contains all the application level constants. A separate file is created for each type as shown in example below:
-
-```
-constants/
-|- app_theme.dart
-|- dimens.dart
-|- endpoints.dart
-|- preferences.dart
-|- strings.dart
-```
-
-### Data
-
-All the business logic of your application will go into this directory, it represents the data layer of your application. It is sub-divided into three directories `local`, `network` and `sharedperf`, each containing the domain specific logic. Since each layer exists independently, that makes it easier to unit test. The communication between UI and data layer is handled by using central repository.
-
-```
-data/
-|- local/
-    |- constants/
-    |- datasources/
-    |- app_database.dart
-
-|- network/
-    |- constants/
-    |- exceptions/
-    |- rest_client.dart
-
-|- sharedpref
-    |- constants/
-    |- shared_preference_helper.dart
-
-|- repository.dart
-
-```
-
-### Stores
-
-The store is where all your application state lives in flutter. The Store is basically a widget that stands at the top of the widget tree and passes it's data down using special methods. In-case of multiple stores, a separate folder for each store is created as shown in the example below:
-
-```
-stores/
-|- login/
-    |- login_store.dart
-    |- form_validator.dart
-```
-
-### UI
-
-This directory contains all the ui of your application. Each screen is located in a separate folder making it easy to combine group of files related to that particular screen. All the screen specific widgets will be placed in `widgets` directory as shown in the example below:
-
-```
-ui/
-|- login
-   |- login_screen.dart
-   |- widgets
-      |- login_form.dart
-      |- login_button.dart
-```
-
-### Utils
-
-Contains the common file(s) and utilities used in a project. The folder structure is as follows:
-
-```
-utils/
-|- encryption
-   |- xxtea.dart
-|- date
-  |- date_time.dart
-```
-
-### Widgets
-
-Contains the common widgets that are shared across multiple screens. For example, Button, TextField etc.
-
-```
-widgets/
-|- app_icon_widget.dart
-|- empty_app_bar.dart
-|- progress_indicator.dart
-```
-
-### Routes
-
-This file contains all the routes for your application.
-
-```dart
-import 'package:flutter/material.dart';
-
-import 'ui/post/post_list.dart';
-import 'ui/login/login.dart';
-import 'ui/splash/splash.dart';
-
-class Routes {
-  Routes._();
-
-  //static variables
-  static const String splash = '/splash';
-  static const String login = '/login';
-  static const String home = '/post';
-
-  static final routes = <String, WidgetBuilder>{
-    splash: (BuildContext context) => SplashScreen(),
-    login: (BuildContext context) => LoginScreen(),
-    home: (BuildContext context) => HomeScreen(),
-  };
-}
-```
-
 ### Main
 
-This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
+This is the starting point of the application. All the application level configurations are defined in this file.
 
 ```dart
-import 'package:boilerplate/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:homebase_flutter_weather_app/features/weather/presentation/pages/local_weather_screen.dart';
 
-import 'constants/app_theme.dart';
-import 'constants/strings.dart';
-import 'ui/splash/splash.dart';
+import 'injection_container.dart' as di;
 
-void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
-  ]).then((_) {
-    runApp(MyApp());
-  });
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: Strings.appName,
-      theme: themeData,
-      routes: Routes.routes,
-      home: SplashScreen(),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const WeatherScreen(),
     );
   }
 }

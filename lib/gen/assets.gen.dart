@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 
@@ -14,6 +14,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/cloudy.png
   AssetGenImage get cloudy => const AssetGenImage('assets/icons/cloudy.png');
+
+  /// File path: assets/icons/error_occured.jpg
+  AssetGenImage get errorOccured =>
+      const AssetGenImage('assets/icons/error_occured.jpg');
 
   /// File path: assets/icons/freezing.png
   AssetGenImage get freezing =>
@@ -51,6 +55,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         cloudy,
+        errorOccured,
         freezing,
         mist,
         notFound,
@@ -127,7 +132,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 

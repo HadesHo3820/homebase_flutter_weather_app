@@ -1,10 +1,9 @@
 import 'dart:convert';
 
+import 'package:homebase_flutter_weather_app/constants/strings.dart';
 import 'package:homebase_flutter_weather_app/core/error/exceptions.dart';
 import 'package:homebase_flutter_weather_app/features/weather/data/models/weather_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-const CACHED_WEATHER_KEY = "CACHED_WEATHER_KEY";
 
 abstract class WeatherLocalDataSourceInterface {
   Future<WeatherModel> getLastWeather();

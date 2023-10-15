@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:homebase_flutter_weather_app/constants/strings.dart';
 import 'package:homebase_flutter_weather_app/core/error/exceptions.dart';
 import 'package:homebase_flutter_weather_app/features/weather/data/data_sources/weather_remote_data_source.dart';
 import 'package:homebase_flutter_weather_app/features/weather/data/models/weather_model.dart';
@@ -55,7 +56,7 @@ void main() {
 
     const path = "$BASE_URL$CURRENT_END_POINT";
     Map<String, dynamic> tQueryParameters = {'key': API_KEY, 'q': tCityName};
-    final tDataResponse = fixture("weather.json");
+    final tDataResponse = json.decode(fixture("weather.json"));
 
     test(
         "should perform a Get request on a URL with a city name being the endpoint",
@@ -118,7 +119,7 @@ void main() {
 
     Map<String, dynamic> tQueryParameters = {'key': API_KEY, 'q': tCityName};
 
-    final tDataResponse = fixture("weather_searched.json");
+    final tDataResponse = json.decode(fixture("weather_searched.json"));
 
     test(
         "should perform a Get request on a URL with a city name being the endpoint",

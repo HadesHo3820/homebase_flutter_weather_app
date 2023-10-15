@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:homebase_flutter_weather_app/features/weather/presentation/pages/search_results_screen.dart';
 import 'package:homebase_flutter_weather_app/features/weather/presentation/providers/weather_provider.dart';
 import 'package:homebase_flutter_weather_app/features/weather/presentation/widgets/search_bar_ui_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class WeatherScreeen extends ConsumerWidget {
-  const WeatherScreeen({super.key});
+class WeatherScreen extends HookConsumerWidget {
+  const WeatherScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(weatherProvider).requestToGetCachedWeather();
+    useEffect(() {
+      Future.delayed(
+        const Duration(milliseconds: 200),
+        () {
+          ref.read(weatherProvider).requestToGetCachedWeather();
+        },
+      );
+      return null;
+    });
 
     ref.listen(weatherProvider, (previous, next) {
       if (previous?.errorMsg != next.errorMsg && next.errorMsg != null) {
@@ -32,7 +41,8 @@ class WeatherScreeen extends ConsumerWidget {
             children: <Widget>[
               GestureDetector(
                   onTap: () {
-                    ref.refresh(weatherProvider);
+                    //ref.refresh(weatherProvider);
+                    ref.invalidate(weatherProvider);
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const SearchResultsScreen(),
                     ));
@@ -46,9 +56,14 @@ class WeatherScreeen extends ConsumerWidget {
                   builder: (context, ref, child) {
                     final cachedWeather =
                         ref.watch(weatherProvider).cachedWeather;
+                    final isLoadingData = ref.watch(weatherProvider).isLoading;
                     if (cachedWeather != null) {
                       return WeatherDetail(
                         weatherEntity: cachedWeather,
+                      );
+                    } else if (isLoadingData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
                     } else {
                       return const Center(

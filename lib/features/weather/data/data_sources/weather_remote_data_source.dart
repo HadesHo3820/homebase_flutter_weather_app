@@ -35,7 +35,6 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSourceInterface {
         queryParameters: {'key': API_KEY, 'q': name});
 
     if (response.statusCode == 200) {
-      print("debug json: ${response.data}");
       return (response.data as List)
           .map((e) => WeatherSearchItemModel.fromJson(e))
           .toList();

@@ -15,6 +15,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/cloudy.png
   AssetGenImage get cloudy => const AssetGenImage('assets/icons/cloudy.png');
 
+  /// File path: assets/icons/error_occured.jpg
+  AssetGenImage get errorOccured =>
+      const AssetGenImage('assets/icons/error_occured.jpg');
+
   /// File path: assets/icons/freezing.png
   AssetGenImage get freezing =>
       const AssetGenImage('assets/icons/freezing.png');
@@ -51,6 +55,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         cloudy,
+        errorOccured,
         freezing,
         mist,
         notFound,

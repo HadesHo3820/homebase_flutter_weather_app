@@ -31,6 +31,9 @@ class WeatherNotifier extends ChangeNotifier {
 
   String? get errorMsg => _errorMsg;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   WeatherNotifier({
     required this.getCachedWeather,
     required this.getWeatherDetailInfoByCityName,
@@ -38,34 +41,54 @@ class WeatherNotifier extends ChangeNotifier {
   });
 
   void requestToGetCachedWeather() async {
+    _isLoading = true;
+    notifyListeners();
+
     final result = await getCachedWeather(NoParams());
-    result.fold((failure) => null, (result) => _cachedWeatherEntity = result);
+    result.fold((failure) {
+      _errorMsg = _mapFailureToMessage(failure);
+    }, (result) => _cachedWeatherEntity = result);
+    _isLoading = false;
     notifyListeners();
   }
 
   void requestToGetWeatherDetail(String cityName) async {
+    _isLoading = true;
+    notifyListeners();
+
     final result =
         await getWeatherDetailInfoByCityName(CityNameParam(cityName: cityName));
 
     result.fold((failure) {
       _errorMsg = _mapFailureToMessage(failure);
+      _weatherDetailInfo = null;
     }, (result) {
       _weatherDetailInfo = result;
+      _errorMsg = null;
       requestToGetCachedWeather();
-      notifyListeners();
     });
+    _isLoading = false;
+
+    notifyListeners();
   }
 
   void requestToSearchWeatherByPlace(String cityName) async {
+    _isLoading = true;
+    notifyListeners();
+
     final result =
         await searchWeatherByCityName(CityNameParam(cityName: cityName));
 
     result.fold((failure) {
       _errorMsg = _mapFailureToMessage(failure);
+      _listWeatherSearchItem = null;
     }, (result) {
+      _errorMsg = null;
       _listWeatherSearchItem = result;
-      notifyListeners();
     });
+
+    _isLoading = false;
+    notifyListeners();
   }
 
   String _mapFailureToMessage(Failure failure) {

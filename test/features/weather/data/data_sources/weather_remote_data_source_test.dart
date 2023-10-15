@@ -55,7 +55,7 @@ void main() {
 
     const path = "$BASE_URL$CURRENT_END_POINT";
     Map<String, dynamic> tQueryParameters = {'key': API_KEY, 'q': tCityName};
-    final tDataResponse = fixture("weather.json");
+    final tDataResponse = json.decode(fixture("weather.json"));
 
     test(
         "should perform a Get request on a URL with a city name being the endpoint",
@@ -118,7 +118,7 @@ void main() {
 
     Map<String, dynamic> tQueryParameters = {'key': API_KEY, 'q': tCityName};
 
-    final tDataResponse = fixture("weather_searched.json");
+    final tDataResponse = json.decode(fixture("weather_searched.json"));
 
     test(
         "should perform a Get request on a URL with a city name being the endpoint",

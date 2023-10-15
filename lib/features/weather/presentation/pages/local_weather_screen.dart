@@ -32,7 +32,8 @@ class WeatherScreeen extends ConsumerWidget {
             children: <Widget>[
               GestureDetector(
                   onTap: () {
-                    ref.refresh(weatherProvider);
+                    //ref.refresh(weatherProvider);
+                    ref.invalidate(weatherProvider);
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const SearchResultsScreen(),
                     ));
@@ -46,9 +47,14 @@ class WeatherScreeen extends ConsumerWidget {
                   builder: (context, ref, child) {
                     final cachedWeather =
                         ref.watch(weatherProvider).cachedWeather;
+                    final isLoadingData = ref.watch(weatherProvider).isLoading;
                     if (cachedWeather != null) {
                       return WeatherDetail(
                         weatherEntity: cachedWeather,
+                      );
+                    } else if (isLoadingData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
                     } else {
                       return const Center(
